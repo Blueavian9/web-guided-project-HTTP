@@ -77,3 +77,19 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
 
 
+
+
+# Todo Full Backend App
+
+## This is a simple Todo app built with **React**, **TailwindCSS**, and **React Transition Group** for frontend animations. The app is designed to demonstrate how to build a full-stack CRUD application by communicating with an HTTP-based backend to manage todo items. This README file will guide you through how the app was built, how to run it locally, and some of the key features.
+
+## Table of Contents
+- [Features](#features)
+- [Technologies Used](#technologies-used)
+- [Prerequisites](#prerequisites)
+- [Installation](#installation)
+- [Running the Application](#running-the-application)
+- [Folder Structure](#folder-structure)
+- [API Routes](#api-routes)
+- [Frontend](#frontend)
+- [Future Enhancements
