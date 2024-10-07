@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
-// import "./App.css";
-// import logo from "./logo.svg"
+// import "./App.css"; // You don't need this if you're using Tailwind CSS
 
 // Mock API functions for todos
 const getTodos = () => {
@@ -10,6 +9,33 @@ const getTodos = () => {
         { id: 1, description: "say hello", isDone: false },
         { id: 2, description: "say hello again", isDone: false },
       ]);
+    }, 500);
+  });
+};
+
+const postTodo = (newTodo) => {
+  return new Promise((resolve) => {
+    console.log("Posting new todo:", newTodo);
+    setTimeout(() => {
+      resolve();
+    }, 500);
+  });
+};
+
+const putTodo = (updatedTodo) => {
+  return new Promise((resolve) => {
+    console.log("Updating todo:", updatedTodo);
+    setTimeout(() => {
+      resolve();
+    }, 500);
+  });
+};
+
+const deleteTodo = (id) => {
+  return new Promise((resolve) => {
+    console.log("Deleting todo with id:", id);
+    setTimeout(() => {
+      resolve();
     }, 500);
   });
 };
@@ -32,25 +58,27 @@ const App = () => {
 
   // Function to add a new todo
   const addTodo = () => {
-    console.log("Adding todo:", todo);
-    postTodo({ description: todo, isDone: false }).then(() => {
-      getData();
-      setTodo("");
-    });
+    if (todo.trim()) {
+      console.log("Adding todo:", todo);
+      postTodo({ description: todo, isDone: false }).then(() => {
+        getData(); // Refresh todos after adding
+        setTodo(""); // Clear input field after submission
+      });
+    }
   };
 
   // Function to mark a todo as complete
   const completeTodo = (todo) => {
     const updatedTodo = { ...todo, isDone: true };
     putTodo(updatedTodo).then(() => {
-      getData();
+      getData(); // Refresh todos after updating
     });
   };
 
   // Function to delete a todo by its ID
   const deleteTodoItem = (id) => {
     deleteTodo(id).then(() => {
-      getData();
+      getData(); // Refresh todos after deleting
     });
   };
 
@@ -59,6 +87,7 @@ const App = () => {
       <div className="w-full max-w-md bg-white shadow-lg rounded-lg p-6">
         <h1 className="text-2xl font-bold text-center mb-4">Todo App</h1>
 
+        {/* Input for adding a new todo */}
         <div className="mb-4">
           <input
             value={todo}
@@ -74,36 +103,43 @@ const App = () => {
           </button>
         </div>
 
+        {/* Displaying the list of todos */}
         <div className="space-y-2">
-          {todos.map((todo, index) => (
-            <div
-              key={index}
-              className="flex justify-between items-center p-2 border-b"
-            >
-              <span
-                className={`${todo.isDone ? "line-through text-gray-500" : ""}`}
+          {todos.length > 0 ? (
+            todos.map((todo, index) => (
+              <div
+                key={index}
+                className="flex justify-between items-center p-2 border-b"
               >
-                {todo.description}
-              </span>
-              <div>
-                {todo.isDone ? (
-                  <button
-                    onClick={() => deleteTodoItem(todo.id)}
-                    className="text-red-500 hover:text-red-600"
-                  >
-                    Delete
-                  </button>
-                ) : (
-                  <button
-                    onClick={() => completeTodo(todo)}
-                    className="text-green-500 hover:text-green-600"
-                  >
-                    Complete
-                  </button>
-                )}
+                <span
+                  className={`${
+                    todo.isDone ? "line-through text-gray-500" : ""
+                  }`}
+                >
+                  {todo.description}
+                </span>
+                <div>
+                  {todo.isDone ? (
+                    <button
+                      onClick={() => deleteTodoItem(todo.id)}
+                      className="text-red-500 hover:text-red-600"
+                    >
+                      Delete
+                    </button>
+                  ) : (
+                    <button
+                      onClick={() => completeTodo(todo)}
+                      className="text-green-500 hover:text-green-600"
+                    >
+                      Complete
+                    </button>
+                  )}
+                </div>
               </div>
-            </div>
-          ))}
+            ))
+          ) : (
+            <p className="text-center text-gray-500">No todos available</p>
+          )}
         </div>
       </div>
     </div>
@@ -111,128 +147,3 @@ const App = () => {
 };
 
 export default App;
-
-// App component before Tailwindcss update:
-// import React, { useEffect, useState } from "react";
-// import "./App.css";
-// // import logo from "./logo.svg"; // Uncomment if you're using the logo
-
-// // Mock API functions for todos
-// const getTodos = () => {
-//   return new Promise((resolve) => {
-//     setTimeout(() => {
-//       resolve([
-//         { id: 1, description: "say hello", isDone: false },
-//         { id: 2, description: "say hello again", isDone: false },
-//       ]);
-//     }, 500); // Added closing of setTimeout and return statement
-//   });
-// };
-
-// const postTodo = (newTodo) => {
-//   return new Promise((resolve) => {
-//     console.log("Posting new todo:", newTodo);
-//     setTimeout(() => {
-//       resolve();
-//     }, 500);
-//   });
-// };
-
-// const putTodo = (updatedTodo) => {
-//   return new Promise((resolve) => {
-//     console.log("Updating todo:", updatedTodo);
-//     setTimeout(() => {
-//       resolve();
-//     }, 500);
-//   });
-// };
-
-// const deleteTodo = (id) => {
-//   return new Promise((resolve) => {
-//     console.log("Deleting todo with id:", id);
-//     setTimeout(() => {
-//       resolve();
-//     }, 500);
-//   });
-// };
-
-// const App = () => {
-//   const [todos, setTodos] = useState([]); // For managing the list of todos
-//   const [todo, setTodo] = useState(""); // For managing the input of a new todo
-
-//   // Fetch todos when the component mounts
-//   useEffect(() => {
-//     getData();
-//   }, []);
-
-//   // Function to fetch todos from the API
-//   const getData = () => {
-//     getTodos().then((res) => {
-//       setTodos(res);
-//     });
-//   };
-
-//   // Function to add a new todo
-//   const addTodo = () => {
-//     if (todo.trim()) {
-//       console.log("Adding todo:", todo);
-//       postTodo({ description: todo, isDone: false }).then(() => {
-//         getData(); // Refresh todos after adding
-//         setTodo(""); // Clear input field after submission
-//       });
-//     }
-//   };
-
-//   // Function to mark a todo as complete
-//   const completeTodo = (todo) => {
-//     const updatedTodo = { ...todo, isDone: true };
-//     putTodo(updatedTodo).then(() => {
-//       getData(); // Refresh todos after updating
-//     });
-//   };
-
-//   // Function to delete a todo by its ID
-//   const deleteTodoItem = (id) => {
-//     deleteTodo(id).then(() => {
-//       getData(); // Refresh todos after deleting
-//     });
-//   };
-
-//   return (
-//     <div className="App">
-//       {/* Input field for adding a new todo */}
-//       <input
-//         value={todo}
-//         onChange={(e) => setTodo(e.target.value)}
-//         placeholder="Enter a new todo"
-//       />
-//       <button onClick={addTodo}>Add Todo</button>
-
-//       {/* List of todos */}
-//       <div className="todo-list">
-//         {todos.length > 0 ? (
-//           todos.map((todo) => (
-//             <div key={todo.id} className="todo-item">
-//               <span className={todo.isDone ? "done" : ""}>
-//                 {todo.description}
-//               </span>
-//               <span>
-//                 {todo.isDone ? (
-//                   <button onClick={() => deleteTodoItem(todo.id)}>
-//                     Delete
-//                   </button>
-//                 ) : (
-//                   <button onClick={() => completeTodo(todo)}>Complete</button>
-//                 )}
-//               </span>
-//             </div>
-//           ))
-//         ) : (
-//           <p>No todos available</p>
-//         )}
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default App;
