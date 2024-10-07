@@ -41,3 +41,92 @@
     transform: rotate(360deg);
   }
 }
+
+.fade-enter {
+  opacity: 0;
+}
+
+.fade-enter-active {
+  opacity: 1;
+  transition: opacity 300ms;
+}
+
+.fade-exit {
+  opacity: 1;
+}
+
+.fade-exit-active {
+  opacity: 0;
+  transition: opacity 300ms;
+}
+/* Mock 7
+ */ 
+/* App.css */
+@keyframes glow {
+  0% {
+    box-shadow: 0 0 5px rgba(75, 200, 250, 0.6),
+                0 0 10px rgba(75, 200, 250, 0.6),
+                0 0 15px rgba(75, 200, 250, 0.6),
+                0 0 20px rgba(75, 200, 250, 0.6);
+  }
+  50% {
+    box-shadow: 0 0 15px rgba(75, 200, 250, 1),
+                0 0 30px rgba(75, 200, 250, 1),
+                0 0 45px rgba(75, 200, 250, 1),
+                0 0 60px rgba(75, 200, 250, 1);
+  }
+  100% {
+    box-shadow: 0 0 5px rgba(75, 200, 250, 0.6),
+                0 0 10px rgba(75, 200, 250, 0.6),
+                0 0 15px rgba(75, 200, 250, 0.6),
+                0 0 20px rgba(75, 200, 250, 0.6);
+  }
+}
+
+.glow-border {
+  border-width: 8px; /* Set border width */
+  border-style: solid; /* Solid border style */
+  border-image: linear-gradient(45deg, #00bfff, #ff00ff) 1; /* Gradient border */
+  background-color: white; /* Background color for the container */
+  border-radius: 12px; /* Rounded corners */
+  animation: glow 1.5s infinite alternate; /* Glowing animation */
+  padding: 20px; /* Inner padding */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Shadow for depth */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/* 
+/* Mock 6 App.css 
+@keyframes glow {
+  0% {
+    box-shadow: 0 0 5px rgba(0, 206, 255, 0.7), 0 0 10px rgba(0, 206, 255, 0.7), 0 0 15px rgba(0, 206, 255, 0.7), 0 0 20px rgba(0, 206, 255, 0.7);
+  }
+
+  50% {
+    box-shadow: 0 0 10px rgba(0, 206, 255, 1), 0 0 20px rgba(0, 206, 255, 1), 0 0 30px rgba(0, 206, 255, 1), 0 0 40px rgba(0, 206, 255, 1);
+  }
+
+  100% {
+    box-shadow: 0 0 5px rgba(0, 206, 255, 0.7), 0 0 10px rgba(0, 206, 255, 0.7), 0 0 15px rgba(0, 206, 255, 0.7), 0 0 20px rgba(0, 206, 255, 0.7);
+  }
+}
+
+.glow-border {
+  border: 6px solid transparent;
+  /* Create space for the gradient border 
+  background-image: linear-gradient(white, white), linear-gradient(to right, #6EE7B7, #3B82F6);
+  background-clip: padding-box, border-box;
+  /* Clip the background 
+  animation: glow 1.5s infinite;
+  /* Apply glowing animation 
+} */
