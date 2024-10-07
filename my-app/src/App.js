@@ -85,7 +85,9 @@ const App = () => {
   return (
     <div className="App bg-gray-100 min-h-screen flex items-center justify-center">
       <div className="w-full max-w-md bg-white shadow-lg rounded-lg p-6">
-        <h1 className="text-2xl font-bold text-center mb-4">Todo App</h1>
+        <h1 className="text-2xl font-bold text-center mb-4">
+          Welcom to my Todo App
+        </h1>
 
         {/* Input for adding a new todo */}
         <div className="mb-4">
